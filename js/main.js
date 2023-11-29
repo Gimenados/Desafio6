@@ -4,22 +4,22 @@ console.log(document.getElementById("Title").innerText) //Muestra solo el texto 
 
 //PUNTO 3
 
-const firstList = document.getElementById("nombre1").children;
+const firstList = document.getElementById("nombre1").children; //Children hijos
 
 function createFullName(HTMLList) {
     let fullName = ""; // Variable para almacenar el nombre completo
-    let contadorCampo = 1;
+    let contadorCampo = 1; //Variable para el contador del ciclo 
 
-    for (let i = 0; i < HTMLList.length; i++) {
+    for (let i = 0; i < HTMLList.length; i++) { //El contenido de la lista del primer nombre
         const element = HTMLList[i];
-        if (element.tagName === "DD") {
+        if (element.tagName === "DD") { //Condicion solo las etiquetas dd
         if (element.innerText) {
           if (fullName) {
-            fullName = fullName.concat(" ")
+            fullName = fullName.concat(" ") //Para darle un espacio entre nombre
           }
-          if (contadorCampo <= 2) {
+          if (contadorCampo <= 2) { //Si es menor o igual a posicion 2 la letras en minuscula
             fullName = fullName.concat(`${element.innerText}`);
-          } else {
+          } else { //De lo contrario en mayuscula 
             fullName = fullName.concat(`${element.innerText.toUpperCase()}`);
           }
         }  
@@ -50,11 +50,11 @@ function showList(list2) { //function para el segundo nombre
      lastname2++;
           }
         }
-    return `Integrante 2: "${string.trim()}"` //Trim elimina los espacios de varios estremos del string
+    return `Integrante 2: "${string.trim()}"` //Trim elimina los espacios de ambos extremos del string
 }
 
-function imprimirLineaDeGuiones() {  //Creo una function para los guiones
-  let dashLine = "----"; //Variable 
+function imprimirLineaDeGuiones() {  //Creo una function para los guiones. Asi de esta forma en el console log solo llamo a las funciones 
+  let dashLine = "----"; //Le doy valor a la variable 
 return dashLine; // Cierro la function de guiones
 }
 
@@ -65,23 +65,23 @@ console.log(`${imprimirLineaDeGuiones()} \n${createFullName(firstList)} \n${show
 
 //PUNTO 4
 
-const nombre1 = createFullName(document.getElementById("nombre1").children);
+const nombre1 = createFullName(document.getElementById("nombre1").children); //Vinculo con mi lista nombre 1 y nombre 2
 const nombre2 = showList(document.getElementById("nombre2").children);
 
-const palabrasNombre1 = nombre1.split(" ");
+const palabrasNombre1 = nombre1.split(" "); //Split divide el texto en espacios tambien podria poner un concat.(" ") y seria lo mismo
 const palabrasNombre2 = nombre2.split(" ");
 
-const colorResaltadoRegex = /^(red|blue|green|yellow|purple|orange)$/i;
+const colorResaltadoRegex = /^(red|blue|green|yellow|purple|orange)$/i; // Para hacer coincidir cadenas que representan ciertos colores específicos.
 
-if (palabrasNombre1.some(palabra => palabrasNombre2.includes(palabra)) || palabrasNombre2.some(palabra => palabrasNombre1.includes(palabra))) {
-  // Condicion true si los nombres son iguales le damos el color y resaltamos
-  let colorResaltado = prompt("Hubo coincidencias. Ingresa un color para resaltar los nombres (ejemplo: red, orange, green):");
+if (palabrasNombre1.some(palabra => palabrasNombre2.includes(palabra)) || palabrasNombre2.some(palabra => palabrasNombre1.includes(palabra))) { //Para verificar si al menos una palabra está presente en ambas listas 
+ 
+  let colorResaltado = prompt("Hubo coincidencias. Ingresa un color para resaltar los nombres (ejemplo: red, orange, green):"); //Llamamos a un prompt
 
-  if (colorResaltado && colorResaltadoRegex.test(colorResaltado)) {
+  if (colorResaltado && colorResaltadoRegex.test(colorResaltado)) { //Primera condicion si el color ingresado en el prompt y la variable asignada de color coinciden 
     const elementoNombre1 = document.getElementById("nombre1");
     const elementoNombre2 = document.getElementById("nombre2");
 
-    // Obtener los elementos dd dentro de los elementos dl
+    // Obtener los elementos dd dentro de los elementos dt
     const ddNombre1 = Array.from(elementoNombre1.querySelectorAll("dd"));
     const ddNombre2 = Array.from(elementoNombre2.querySelectorAll("dd"));
 
@@ -89,11 +89,11 @@ if (palabrasNombre1.some(palabra => palabrasNombre2.includes(palabra)) || palabr
     let huboCoincidencias = false;
 
     // Comparar y cambiar el color solo de los elementos iguales
-    for (let i = 0; i < ddNombre1.length && i < ddNombre2.length; i++) {
+    for (let i = 0; i < ddNombre1.length && i < ddNombre2.length; i++) {  //Bucle for para los elementos iguales
       const nombre1Actual = ddNombre1[i].textContent.trim();
       const nombre2Actual = ddNombre2[i].textContent.trim();
 
-      if (nombre1Actual === nombre2Actual) {
+      if (nombre1Actual === nombre2Actual) { //Si los elementos son iguales (abajo huboCoincidencias=true;)
         ddNombre1[i].style.color = colorResaltado;
         ddNombre2[i].style.color = colorResaltado;
         huboCoincidencias = true;
