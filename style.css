@@ -1,0 +1,26 @@
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+dl {
+    border: 1px solid black;
+    font-size: 0.8rem;
+    width: 180px;
+}
+
+dt {
+    font-weight: bold;
+    margin: 0.4rem;
+    width: 150px;
+}
+  
+  
+dd {
+    margin-bottom: 1em;
+    font-weight: 300;
+}
+  
